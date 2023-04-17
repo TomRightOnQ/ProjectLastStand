@@ -1,0 +1,5 @@
+DefaultGameObjects ->Entities -> Players, Monsters
+		-> Items -> Projectiles
+
+DataManager -> Instance created in Gamemanager
+Prefabmanager -> Reference for prefabs
