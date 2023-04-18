@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    private DataManager dataManager;
+    public DataManager dataManager;
     public PrefabManager prefabManager;
 
     public static GameManager Instance
@@ -33,19 +33,25 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            GameObject dataManagerObj = new GameObject("DataManager");
+            dataManager = dataManagerObj.AddComponent<DataManager>();
+            dataManager.initData(prefabManager);
         }
-        // Init prefab references
-        dataManager = DataManager.Instance;
-        dataManager.SetPrefabReference(prefabManager);
     }
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+        // Test Attack
+        Players[] players = dataManager.GetPlayers();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            players[0].fire();
+        }
     }
 }

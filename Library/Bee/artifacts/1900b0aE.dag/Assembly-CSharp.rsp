@@ -350,14 +350,17 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts/DefaultObjects.cs"
-"Assets/Scripts/Entities.cs"
 "Assets/Scripts/Managers/DataManager.cs"
 "Assets/Scripts/Managers/GameManager.cs"
 "Assets/Scripts/Managers/PrefabManager.cs"
 "Assets/Scripts/Managers/SingletonClass.cs"
-"Assets/Scripts/Monsters.cs"
-"Assets/Scripts/Players.cs"
+"Assets/Scripts/ObjectClass/DefaultObjects.cs"
+"Assets/Scripts/ObjectClass/Entities.cs"
+"Assets/Scripts/ObjectClass/Items.cs"
+"Assets/Scripts/ObjectClass/Monsters.cs"
+"Assets/Scripts/ObjectClass/Players.cs"
+"Assets/Scripts/ObjectClass/Projectiles.cs"
+"Assets/Scripts/ObjectClass/Weapons.cs"
 -langversion:9.0
 
 /deterministic
