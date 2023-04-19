@@ -49,10 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   hitPoints: 20
+  currentHitPoints: 20
   defaultAttack: 1
   defaultWeaponAttack: 1
   defaultDefence: 5
   defaultmagicDefence: 0
+  hpS: {fileID: 0}
   index: 0
   fortune: 1
   weapon1: 0

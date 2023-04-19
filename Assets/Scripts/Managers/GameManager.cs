@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // Prepare pools
+        Projectiles[] projPoolA = GameManager.Instance.dataManager.GetProjs();
+        Monsters[] monsterPoolA = GameManager.Instance.dataManager.GetMonsters();
+        Debug.Log(projPoolA.Length);
         // Test Attack
         Players[] players = dataManager.GetPlayers();
 
@@ -53,5 +57,33 @@ public class GameManager : MonoBehaviour
         {
             players[0].fire();
         }
+
+
+        // Damage Calculation
+        foreach (Projectiles proj in projPoolA)
+        {
+            if (proj != null && proj.gameObject.activeSelf && proj.Player)
+            {
+                foreach (Monsters monster in monsterPoolA)
+                {
+                    if (monster != null && monster.gameObject.activeSelf && monster.gameObject.CompareTag("Monster"))
+                    {
+                        float distance = Vector3.Distance(proj.transform.position, monster.transform.position);
+                        if (distance < 1f)
+                        {
+                            monster.TakeDamage(1f);
+                            proj.Deactivate();
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (!proj.gameObject.activeSelf)
+            {
+                GameManager.Instance.dataManager.RemoveDeactivatedProj(proj);
+            }
+        }
     }
+
+    //
 }

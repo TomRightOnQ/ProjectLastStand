@@ -58,7 +58,7 @@ public class Players : Entities
                 proj.Owner = 1;
                 proj.Life = 10.0f;
                 proj.SelfDet = true;
-
+                proj.Player = true;
                 direction.y = 0f;
                 proj.GetComponent<Rigidbody>().velocity = direction * 10f;
             }

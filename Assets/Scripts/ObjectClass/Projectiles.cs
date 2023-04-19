@@ -15,6 +15,8 @@ public class Projectiles : Items
     [SerializeField] private int owner = 0;
     [SerializeField] private float life = 6.0f;
     [SerializeField] private bool selfDet = false;
+    [SerializeField] private bool player = false;
+    [SerializeField] private bool pen = false;
     private float creationTime;
 
     public float Damage
@@ -41,6 +43,18 @@ public class Projectiles : Items
         set { selfDet = value; }
     }
 
+    public bool Player
+    {
+        get { return player; }
+        set { player = value; }
+    }
+
+    public bool Pen
+    {
+        get { return pen; }
+        set { pen = value; }
+    }
+
     // Control the lifespan of a projectile
     private void OnEnable()
     {
@@ -51,9 +65,10 @@ public class Projectiles : Items
     private void OnDisable()
     {
         CancelInvoke("Deactivate");
+
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
         gameObject.SetActive(false);
     }

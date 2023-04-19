@@ -10,13 +10,15 @@ public class DataManager : MonoBehaviour
     private PrefabManager PrefabReference;
     // Data sectors
     // Players
-    private Players[] playerArray;
+    private List<Players> playerList = new List<Players>();
     public const int PLAYER_COUNT = 1;
     // Monsters
-    private Monsters[] monsterPool;
+    private List<Monsters> monsterPool = new List<Monsters>();
+    private List<Monsters> monsterPoolA = new List<Monsters>();
     public const int MONSTER_COUNT = 1;
     // Projectiles
-    private Projectiles[] projPool;
+    private List<Projectiles> projPool = new List<Projectiles>();
+    private List<Projectiles> projPoolA = new List<Projectiles>();
     public const int PROJ_COUNT = 10;
 
     // Set up a reference sheet of objects
@@ -36,60 +38,89 @@ public class DataManager : MonoBehaviour
         }
 
         // Place the players in the field
-        playerArray = new Players[PLAYER_COUNT];
         for (int i = 0; i < PLAYER_COUNT; i++)
         {
             GameObject playerObj = Instantiate(PrefabReference.playerPrefab, new Vector3(0f, 0.2f, 0f), Quaternion.identity);
             playerObj.SetActive(true);
-            playerArray[i] = playerObj.GetComponent<Players>();
+            playerList.Add(playerObj.GetComponent<Players>());
         }
 
         // Initialize monster pool
-        monsterPool = new Monsters[MONSTER_COUNT];
         for (int i = 0; i < MONSTER_COUNT; i++)
         {
             GameObject monsterObj = Instantiate(PrefabReference.monsterPrefab, Vector3.zero, Quaternion.identity);
             monsterObj.SetActive(false);
-            monsterPool[i] = monsterObj.GetComponent<Monsters>();
+            monsterPool.Add(monsterObj.GetComponent<Monsters>());
         }
 
         // Initialize projectile pool
-        projPool = new Projectiles[PROJ_COUNT];
         for (int i = 0; i < PROJ_COUNT; i++)
         {
             GameObject projObj = Instantiate(PrefabReference.projPrefab, Vector3.zero, Quaternion.identity);
             projObj.SetActive(false);
-            projPool[i] = projObj.GetComponent<Projectiles>();
+            projPool.Add(projObj.GetComponent<Projectiles>());
         }
     }
 
     // Take an object from the pool and push it to the other
-    public Projectiles TakeProjPool() {
-        for (int i = 0; i < projPool.Length; i++)
+    public Projectiles TakeProjPool()
+    {
+        for (int i = 0; i < projPool.Count; i++)
         {
             if (!projPool[i].gameObject.activeSelf)
             {
                 projPool[i].gameObject.SetActive(true);
+                projPoolA.Add(projPool[i]);
                 return projPool[i];
             }
         }
         return null;
     }
 
+    public Monsters TakeMonsterPool()
+    {
+        for (int i = 0; i < monsterPool.Count; i++)
+        {
+            if (!monsterPool[i].gameObject.activeSelf)
+            {
+                monsterPool[i].gameObject.SetActive(true);
+                monsterPoolA.Add(monsterPool[i]);
+                return monsterPool[i];
+            }
+        }
+        return null;
+    }
+
+    public void RemoveDeactivatedProj(Projectiles proj)
+    {
+        if (projPoolA.Contains(proj))
+        {
+            projPoolA.Remove(proj);
+        }
+    }
+
+    public void RemoveDeactivatedMonster(Monsters monster)
+    {
+        if (monsterPoolA.Contains(monster))
+        {
+            monsterPoolA.Remove(monster);
+        }
+    }
+
     // Getters for the pools
     public Players[] GetPlayers()
     {
-        return playerArray;
+        return playerList.ToArray(); ;
     }
 
     public Projectiles[] GetProjs()
     {
-        return projPool;
+        return projPoolA.ToArray(); ;
     }
 
     public Monsters[] GetMonsters()
     {
-        return monsterPool;
+        return monsterPoolA.ToArray(); ;
     }
 
     void Start()
