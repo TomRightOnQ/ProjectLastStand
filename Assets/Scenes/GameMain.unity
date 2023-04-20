@@ -441,6 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataManager: {fileID: 0}
   prefabManager: {fileID: 196751019}
+  monsterManager: {fileID: 0}
 --- !u!4 &1235449231
 Transform:
   m_ObjectHideFlags: 0
@@ -509,7 +510,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

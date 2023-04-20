@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public DataManager dataManager;
     public PrefabManager prefabManager;
-
+    public MonsterManager monsterManager;
     public static GameManager Instance
     {
         get
@@ -31,11 +31,15 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // init all manager objects
             instance = this;
             DontDestroyOnLoad(gameObject);
             GameObject dataManagerObj = new GameObject("DataManager");
             dataManager = dataManagerObj.AddComponent<DataManager>();
             dataManager.initData(prefabManager);
+
+            GameObject monsterManagerObj = new GameObject("MonsterManager");
+            monsterManager = monsterManagerObj.AddComponent<MonsterManager>();
         }
     }
 
@@ -49,7 +53,6 @@ public class GameManager : MonoBehaviour
         // Prepare pools
         Projectiles[] projPoolA = GameManager.Instance.dataManager.GetProjs();
         Monsters[] monsterPoolA = GameManager.Instance.dataManager.GetMonsters();
-        Debug.Log(projPoolA.Length);
         // Test Attack
         Players[] players = dataManager.GetPlayers();
 
@@ -68,10 +71,10 @@ public class GameManager : MonoBehaviour
                 {
                     if (monster != null && monster.gameObject.activeSelf && monster.gameObject.CompareTag("Monster"))
                     {
-                        float distance = Vector3.Distance(proj.transform.position, monster.transform.position);
-                        if (distance < 1f)
+                        if (proj.GetComponent<Collider>().bounds.Intersects(monster.GetComponent<Collider>().bounds))
                         {
-                            monster.TakeDamage(1f);
+                            Debug.Log("Has taken damage");
+                            monster.TakeDamage(10f);
                             proj.Deactivate();
                             break;
                         }

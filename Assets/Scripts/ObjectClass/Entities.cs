@@ -55,7 +55,8 @@ public abstract class Entities : DefaultObjects
 
     // Taking Damage
     public void TakeDamage(float damage) {
-        hitPoints -= damage;
+
+        currentHitPoints -= damage;
         UpdateHP();
     }
 
