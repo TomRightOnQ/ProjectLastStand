@@ -21,7 +21,7 @@ public class MonsterManager : MonoBehaviour
         {
             yield return new WaitForSeconds(spawning);
 
-            Vector3 pos = new Vector3(0f, 0.1f, 2f);
+            Vector3 pos = new Vector3(Random.Range(-2, 2), 0.1f, (Random.Range(-2, 2)));
 
             spawn(pos);
         }
@@ -37,11 +37,14 @@ public class MonsterManager : MonoBehaviour
         {
             // Config the monster
             monster.transform.position = pos;
+            monster.CurrentHitPoints = 20;
+            monster.UpdateHP();
         }
     }
 
-    public void despawn(Monsters monster) {
-        if (monster != null) {
+    // Check if a mosnter should get despawn
+    public void despawnCheck(Monsters monster) {
+        if (monster != null && monster.CurrentHitPoints <= 0) {
             monster.Deactivate();
             GameManager.Instance.dataManager.RemoveDeactivatedMonster(monster);
         }

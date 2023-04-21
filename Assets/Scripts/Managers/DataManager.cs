@@ -15,7 +15,7 @@ public class DataManager : MonoBehaviour
     // Monsters
     private List<Monsters> monsterPool = new List<Monsters>();
     private List<Monsters> monsterPoolA = new List<Monsters>();
-    public const int MONSTER_COUNT = 1;
+    public const int MONSTER_COUNT = 3;
     // Projectiles
     private List<Projectiles> projPool = new List<Projectiles>();
     private List<Projectiles> projPoolA = new List<Projectiles>();
@@ -29,8 +29,10 @@ public class DataManager : MonoBehaviour
     }
 
     // Init pools
-    private void initPool()
+    private void initPool() 
     {
+        Vector3 dPpos = new Vector3(-10f, -10f, -10f);
+        Vector3 dMpos = new Vector3(10f, -10f, 10f);
         if (PrefabReference == null)
         {
             Debug.LogError("Prefab reference is null in DataManager.Awake!");
@@ -40,7 +42,7 @@ public class DataManager : MonoBehaviour
         // Place the players in the field
         for (int i = 0; i < PLAYER_COUNT; i++)
         {
-            GameObject playerObj = Instantiate(PrefabReference.playerPrefab, new Vector3(0f, 0.2f, 0f), Quaternion.identity);
+            GameObject playerObj = Instantiate(PrefabReference.playerPrefab, new Vector3(0f, 0.1f, 0f), Quaternion.identity);
             playerObj.SetActive(true);
             playerList.Add(playerObj.GetComponent<Players>());
         }
@@ -48,7 +50,7 @@ public class DataManager : MonoBehaviour
         // Initialize monster pool
         for (int i = 0; i < MONSTER_COUNT; i++)
         {
-            GameObject monsterObj = Instantiate(PrefabReference.monsterPrefab, Vector3.zero, Quaternion.identity);
+            GameObject monsterObj = Instantiate(PrefabReference.monsterPrefab, dMpos, Quaternion.identity);
             monsterObj.SetActive(false);
             monsterPool.Add(monsterObj.GetComponent<Monsters>());
         }
@@ -56,7 +58,7 @@ public class DataManager : MonoBehaviour
         // Initialize projectile pool
         for (int i = 0; i < PROJ_COUNT; i++)
         {
-            GameObject projObj = Instantiate(PrefabReference.projPrefab, Vector3.zero, Quaternion.identity);
+            GameObject projObj = Instantiate(PrefabReference.projPrefab, dPpos, Quaternion.identity);
             projObj.SetActive(false);
             projPool.Add(projObj.GetComponent<Projectiles>());
         }

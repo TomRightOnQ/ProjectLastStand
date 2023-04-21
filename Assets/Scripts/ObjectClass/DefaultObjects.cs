@@ -6,10 +6,5 @@ using UnityEngine;
 
 public abstract class DefaultObjects : MonoBehaviour
 {
-    [SerializeField] private float speed = 1;
-    public float Speed
-    {
-        get { return speed; }
-        set { speed = value; }
-    }
+
 }

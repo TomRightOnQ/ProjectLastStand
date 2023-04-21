@@ -71,5 +71,6 @@ public class Projectiles : Items
     public void Deactivate()
     {
         gameObject.SetActive(false);
+        transform.position = new Vector3(-10f, -10f, -10f);
     }
 }

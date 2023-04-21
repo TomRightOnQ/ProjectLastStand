@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
             players[0].fire();
         }
 
-
         // Damage Calculation
         foreach (Projectiles proj in projPoolA)
         {
@@ -76,6 +75,7 @@ public class GameManager : MonoBehaviour
                             Debug.Log("Has taken damage");
                             monster.TakeDamage(10f);
                             proj.Deactivate();
+                            GameManager.Instance.monsterManager.despawnCheck(monster);
                             break;
                         }
                     }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 // Entities are all NPCs and player-controlled units
 public abstract class Entities : DefaultObjects
 {
+
     // Player Stats
     [SerializeField] private float hitPoints = 20;
     [SerializeField] private float currentHitPoints = 20;
@@ -13,7 +14,7 @@ public abstract class Entities : DefaultObjects
     [SerializeField] private float defaultWeaponAttack = 1;
     [SerializeField] private float defaultDefence = 5;
     [SerializeField] private float defaultmagicDefence = 0;
-
+    [SerializeField] private float speed = 1;
     [SerializeField] private Slider hpS;
 
     // Getters and Setters
@@ -53,6 +54,17 @@ public abstract class Entities : DefaultObjects
         set { defaultmagicDefence = value; }
     }
 
+    public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
+
+    // Update
+    void Update() {
+
+    }
+
     // Taking Damage
     public void TakeDamage(float damage) {
 
@@ -64,6 +76,7 @@ public abstract class Entities : DefaultObjects
     public void Deactivate()
     {
         gameObject.SetActive(false);
+        transform.position = new Vector3(10f, -10f, -10f);
     }
 
     // HP Bar 
