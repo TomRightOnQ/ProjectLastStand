@@ -6,7 +6,7 @@
         "speed": 1,
         "defaultAttack": 1,
         "defaultWeaponAttack": 1,
-        "defaultDenfence": 5,
+        "defaultDefence": 5,
         "defaultMagicDefence": 0,
         "exp": 1
     },
@@ -17,7 +17,7 @@
         "speed": 2,
         "defaultAttack": 2,
         "defaultWeaponAttack": 3,
-        "defaultDenfence": 10,
+        "defaultDefence": 10,
         "defaultMagicDefence": 5,
         "exp": 3
     }

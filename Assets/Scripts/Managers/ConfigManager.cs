@@ -23,7 +23,7 @@ public class ConfigManager : MonoBehaviour
         public float speed;
         public int defaultAttack;
         public int defaultWeaponAttack;
-        public int defaultDenfence;
+        public int defaultDefence;
         public int defaultMagicDefence;
         public int exp;
     }
@@ -38,6 +38,8 @@ public class ConfigManager : MonoBehaviour
         public float cd;
         public bool selfDet;
         public float projectileSpeed;
+        public float damageRange;
+        public bool aoe;
     }
 
     // Loader

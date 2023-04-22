@@ -364,8 +364,6 @@
 "Assets/Scripts/ObjectClass/Projectiles.cs"
 "Assets/Scripts/ObjectClass/Weapons.cs"
 "Assets/Scripts/Tools/PlayerMovement.cs"
-"Assets/Scripts/Tools/WeaponMovement.cs"
-"Assets/Scripts/Tools/WeaponsFactory.cs"
 -langversion:9.0
 
 /deterministic

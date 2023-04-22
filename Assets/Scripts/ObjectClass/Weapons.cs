@@ -17,7 +17,8 @@ public class Weapons : DefaultObjects
     [SerializeField] protected float cd = 0.5f;
     [SerializeField] protected bool selfDet = false;
     [SerializeField] protected float projectileSpeed = 10f;
-
+    [SerializeField] private float damageRange = 0.1f;
+    [SerializeField] private bool aoe = false;
     // Morph the weapon
     public void SetWeapons(WeaponConfig weaponConfigs)
     {
@@ -30,6 +31,7 @@ public class Weapons : DefaultObjects
         cd = weaponConfigs.cd;
         selfDet = weaponConfigs.selfDet;
         projectileSpeed = weaponConfigs.projectileSpeed;
+        aoe = weaponConfigs.aoe;
     }
 
     // Fire based on type
@@ -64,9 +66,9 @@ public class Weapons : DefaultObjects
                 proj.Life = 10.0f;
                 proj.SelfDet = true;
                 proj.Player = true;
-                proj.AOE = false;
+                proj.AOE = aoe;
                 direction.y = 0f;
-                proj.GetComponent<Rigidbody>().velocity = direction * 10f;
+                proj.GetComponent<Rigidbody>().velocity = direction * projectileSpeed;
             }
         }
     }
@@ -120,9 +122,15 @@ public class Weapons : DefaultObjects
         set { cd = value; }
     }
 
-    public bool SelfDett
+    public bool SelfDet
     {
         get { return selfDet; }
         set { selfDet = value; }
+    }
+
+    public float DamageRange
+    {
+        get { return damageRange; }
+        set { damageRange = value; }
     }
 } 

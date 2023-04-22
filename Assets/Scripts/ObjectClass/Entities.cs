@@ -8,14 +8,14 @@ public abstract class Entities : DefaultObjects
 {
 
     // Player Stats
-    [SerializeField] private float hitPoints = 20;
-    [SerializeField] private float currentHitPoints = 20;
-    [SerializeField] private float defaultAttack = 1;
-    [SerializeField] private float defaultWeaponAttack = 1;
-    [SerializeField] private float defaultDefence = 5;
-    [SerializeField] private float defaultMagicDefence = 0;
-    [SerializeField] private float speed = 1;
-    [SerializeField] private Slider hpS;
+    [SerializeField] protected float hitPoints = 20;
+    [SerializeField] protected float currentHitPoints = 20;
+    [SerializeField] protected float defaultAttack = 1;
+    [SerializeField] protected float defaultWeaponAttack = 1;
+    [SerializeField] protected float defaultDefence = 5;
+    [SerializeField] protected float defaultMagicDefence = 0;
+    [SerializeField] protected float speed = 1;
+    [SerializeField] protected Slider hpS;
 
     // Getters and Setters
     public float HitPoints

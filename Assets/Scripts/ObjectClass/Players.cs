@@ -13,7 +13,7 @@ public class Players : Entities
     [SerializeField] private bool armed = false;
 
     // Weapons
-    private int WEAPON_COUNT = 1;
+    private int WEAPON_COUNT = 2;
     private Weapons[] weapons;
     void Start()
     {
@@ -22,7 +22,7 @@ public class Players : Entities
         prefabReference = GameManager.Instance.prefabManager;
 
         for (int i = 0; i < WEAPON_COUNT; i++) {
-            GameObject weaponObj = Instantiate(prefabReference.weaponPrefab, new Vector3(0f, 0.1f, -0.1f), Quaternion.Euler(45f, 0f, 0f));
+            GameObject weaponObj = Instantiate(prefabReference.weaponPrefab, new Vector3(0.15f, 0.1f, 0.1f), Quaternion.Euler(0f, 90f, 0f));
             weaponObj.SetActive(true);
             weapons[i] = weaponObj.GetComponent<Weapons>();
             weapons[i].transform.parent = transform;
@@ -63,5 +63,6 @@ public class Players : Entities
     // Attack!
     public void fire() {
         weapons[0].Fire(transform.position, index);
+        weapons[1].Fire(transform.position, index);
     }
 }
