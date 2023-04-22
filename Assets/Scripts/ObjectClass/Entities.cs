@@ -13,7 +13,7 @@ public abstract class Entities : DefaultObjects
     [SerializeField] private float defaultAttack = 1;
     [SerializeField] private float defaultWeaponAttack = 1;
     [SerializeField] private float defaultDefence = 5;
-    [SerializeField] private float defaultmagicDefence = 0;
+    [SerializeField] private float defaultMagicDefence = 0;
     [SerializeField] private float speed = 1;
     [SerializeField] private Slider hpS;
 
@@ -50,8 +50,8 @@ public abstract class Entities : DefaultObjects
 
     public float DefaultmagicDefence
     {
-        get { return defaultmagicDefence; }
-        set { defaultmagicDefence = value; }
+        get { return defaultMagicDefence; }
+        set { defaultMagicDefence = value; }
     }
 
     public float Speed
@@ -69,6 +69,9 @@ public abstract class Entities : DefaultObjects
     public void TakeDamage(float damage) {
 
         currentHitPoints -= damage;
+        if (currentHitPoints > hitPoints) {
+            currentHitPoints = hitPoints;
+        }
         UpdateHP();
     }
 

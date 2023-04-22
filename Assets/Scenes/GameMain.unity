@@ -170,6 +170,7 @@ MonoBehaviour:
   monsterPrefab: {fileID: 2668866916221753463, guid: 800205b3cf137cc4f970dfb6807e68d9, type: 3}
   projPrefab: {fileID: 7790031011691829733, guid: fb40bd19a05b60b42b93a4d878866fa2, type: 3}
   playerPrefab: {fileID: 927813109376346250, guid: 0876b712f50bf7d428bc21aa2804b1f8, type: 3}
+  weaponPrefab: {fileID: 2466599894649513485, guid: a0b0345c4da251a458b2d5e77f7bb3ac, type: 3}
 --- !u!1 &317560998
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +443,7 @@ MonoBehaviour:
   dataManager: {fileID: 0}
   prefabManager: {fileID: 196751019}
   monsterManager: {fileID: 0}
+  configManager: {fileID: 0}
 --- !u!4 &1235449231
 Transform:
   m_ObjectHideFlags: 0
@@ -599,7 +601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pre 0.1
+  m_text: Pre 0.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

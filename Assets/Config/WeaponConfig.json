@@ -1,0 +1,13 @@
+[
+    {
+        "name": "DefaultPistol",
+        "id": 0,
+        "isBullet": true,
+        "attack": 20,
+        "pen": 0.1,
+        "life": 6.0,
+        "cd": 0.5,
+        "selfDet": false,
+        "projectileSpeed": 10
+    }
+]

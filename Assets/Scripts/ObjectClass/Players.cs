@@ -1,20 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConfigManager;
 
 // All players are a Players object
 public class Players : Entities
 {
-    void Start() {
-        gameObject.tag = "Player";
-    }
+    private PrefabManager prefabReference;
     // Player 1 - 4
     [SerializeField] private int index = 0;
     [SerializeField] private float fortune = 1;
+    [SerializeField] private bool armed = false;
 
-    // Weapon Indices
-    [SerializeField] private int weapon1 = 0;
+    // Weapons
+    private int WEAPON_COUNT = 2;
+    private Weapons[] weapons;
+    void Start()
+    {
+        gameObject.tag = "Player";
+        weapons = new Weapons[WEAPON_COUNT];
+        prefabReference = GameManager.Instance.prefabManager;
 
+        for (int i = 0; i < WEAPON_COUNT; i++) {
+            GameObject weaponObj = Instantiate(prefabReference.weaponPrefab, new Vector3(0f, 0.1f, 0f), Quaternion.identity);
+            weaponObj.SetActive(true);
+            weapons[i] = weaponObj.GetComponent<Weapons>();
+        }
+    }
     public int Index
     {
         get { return index; }
@@ -27,41 +39,28 @@ public class Players : Entities
         set { fortune = value; }
     }
 
-    public int Weapon1
+    public bool Armed 
     {
-        get { return weapon1; }
-        set { weapon1 = value; }
+        get { return armed; }
+        set { armed = value; }
+    }
+
+    // Set prefabreference
+    public void SetPrefabManager(PrefabManager prefabReference)
+    {
+        this.prefabReference = prefabReference;
+    }
+    /* Add a Weapon
+    slot: 1 or 2, indicate the current slot
+    id: weapon id
+    return: add a Weapons type object instance to Weapons[] array */
+    public void addWeapon(int slot, int id) {
+        WeaponConfig[] weaponData = GameManager.Instance.configManager.getWeapons();
+        weapons[slot].SetWeapons(weaponData[id]);
     }
 
     // Attack!
     public void fire() {
-        // Get projectile from pool
-        Projectiles proj = GameManager.Instance.dataManager.TakeProjPool();
-
-        if (proj != null)
-        {
-            // Get a plane for bullets to move along
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Plane plane = new Plane(Vector3.up, transform.position);
-            float distanceToPlane;
-
-            if (plane.Raycast(ray, out distanceToPlane))
-            {
-                // Get the position of mouse
-                Vector3 mousePosition = ray.GetPoint(distanceToPlane);
-                Vector3 direction = (mousePosition - transform.position).normalized;
-
-                // Config the Projectile
-                proj.transform.position = transform.position;
-                proj.transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
-                proj.Damage = 100;
-                proj.Owner = 1;
-                proj.Life = 10.0f;
-                proj.SelfDet = true;
-                proj.Player = true;
-                direction.y = 0f;
-                proj.GetComponent<Rigidbody>().velocity = direction * 10f;
-            }
-        }
+        weapons[0].Fire(transform.position, index);
     }
 }

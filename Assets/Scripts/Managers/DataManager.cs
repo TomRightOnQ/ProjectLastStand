@@ -62,6 +62,8 @@ public class DataManager : MonoBehaviour
             projObj.SetActive(false);
             projPool.Add(projObj.GetComponent<Projectiles>());
         }
+
+        Debug.Log("DataManager is Ready");
     }
 
     // Take an object from the pool and push it to the other
@@ -107,6 +109,12 @@ public class DataManager : MonoBehaviour
         {
             monsterPoolA.Remove(monster);
         }
+    }
+
+    // Return the prefabs
+    public PrefabManager GetPrefabReference()
+    {
+        return PrefabReference;
     }
 
     // Getters for the pools

@@ -7,4 +7,5 @@ public class PrefabManager : MonoBehaviour
     public GameObject monsterPrefab;
     public GameObject projPrefab;
     public GameObject playerPrefab;
+    public GameObject weaponPrefab;
 }

@@ -17,6 +17,7 @@ public class Projectiles : Items
     [SerializeField] private bool selfDet = false;
     [SerializeField] private bool player = false;
     [SerializeField] private bool pen = false;
+    [SerializeField] private bool aoe = false;
     private float creationTime;
 
     public float Damage
@@ -53,6 +54,12 @@ public class Projectiles : Items
     {
         get { return pen; }
         set { pen = value; }
+    }
+
+    public bool AOE
+    {
+        get { return aoe; }
+        set { aoe = value; }
     }
 
     // Control the lifespan of a projectile
